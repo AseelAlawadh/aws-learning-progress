@@ -34,9 +34,9 @@ A clean and easy-to-use HTML tracker to help you prepare for the **AWS Certified
 3. Your progress and notes will be saved automatically
 
 ---
-## 🌐 Live Site
+## 🌐 Live Demo
 
-Check out the project live on GitHub Pages:  
+Check out the site live on GitHub Pages:  
 [aseelalawadh.github.io/aws-study-tracker](https://aseelalawadh.github.io/aws-study-tracker/)
 
 ---
