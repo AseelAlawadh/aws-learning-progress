@@ -34,8 +34,14 @@ A clean and easy-to-use HTML tracker to help you prepare for the **AWS Certified
 3. Your progress and notes will be saved automatically
 
 ---
+## 🌐 Live Site
 
- ☁️ Want to deploy your tracker live? 👉 [See AWS deploy instructions](DEPLOY-AWS.md)
+Check out the project live on GitHub Pages:  
+[aseelalawadh.github.io/aws-study-tracker](https://aseelalawadh.github.io/aws-study-tracker/)
+
+---
+
+☁️ Want to deploy your tracker live? 👉 [See AWS deploy instructions](DEPLOY-AWS.md)
 ---
 
 ### 📚💡 Built to make studying for AWS certification more focused, visual, and enjoyable.
