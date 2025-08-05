@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Architect Study Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f4f8; }
+    h1 { color: #1a73e8; }
+    .section { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    label { display: block; margin-bottom: 10px; }
+    textarea { width: 100%; height: 80px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 10px; }
+    progress { width: 100%; height: 20px; }
+    .links { margin-top: 10px; }
+    .links a { display: block; color: #1a73e8; text-decoration: none; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <h1>📘 AWS Solutions Architect – Study Progress</h1>
+
+  <div class="section">
+    <h2>📅 Week 1 – Core Services</h2>
+    <label><input type="checkbox" onchange="updateProgress()"> EC2</label>
+    <label><input type="checkbox" onchange="updateProgress()"> S3</label>
+    <label><input type="checkbox" onchange="updateProgress()"> IAM</label>
+    <label><input type="checkbox" onchange="updateProgress()"> CLI & SDK</label>
+    <div class="links">
+      <a href="https://docs.aws.amazon.com/ec2/">🔗 EC2 Docs</a>
+      <a href="https://docs.aws.amazon.com/s3/">🔗 S3 Docs</a>
+      <a href="https://docs.aws.amazon.com/IAM/">🔗 IAM Docs</a>
+      <a href="https://docs.aws.amazon.com/cli/">🔗 AWS CLI Docs</a>
+    </div>
+    <textarea placeholder="ملاحظاتك..."></textarea>
+  </div>
+
+  <div class="section">
+    <h2>📅 Week 2 – Networking</h2>
+    <label><input type="checkbox" onchange="updateProgress()"> VPC Basics</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Subnets & Routing</label>
+    <label><input type="checkbox" onchange="updateProgress()"> NAT & IGW</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Security Groups & NACL</label>
+    <div class="links">
+      <a href="https://docs.aws.amazon.com/vpc/">🔗 VPC Docs</a>
+      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">🔗 Subnets</a>
+      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT.html">🔗 NAT Gateway</a>
+      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">🔗 Security Groups</a>
+    </div>
+    <textarea placeholder="ملاحظاتك..."></textarea>
+  </div>
+
+  <div class="section">
+    <h2>📅 Week 3 – Databases & Scaling</h2>
+    <label><input type="checkbox" onchange="updateProgress()"> RDS & Aurora</label>
+    <label><input type="checkbox" onchange="updateProgress()"> DynamoDB</label>
+    <label><input type="checkbox" onchange="updateProgress()"> ELB & ASG</label>
+    <label><input type="checkbox" onchange="updateProgress()"> EBS & EFS</label>
+    <div class="links">
+      <a href="https://docs.aws.amazon.com/AmazonRDS/">🔗 RDS Docs</a>
+      <a href="https://docs.aws.amazon.com/amazondynamodb/">🔗 DynamoDB Docs</a>
+      <a href="https://docs.aws.amazon.com/elasticloadbalancing/">🔗 ELB Docs</a>
+      <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html">🔗 EBS Docs</a>
+    </div>
+    <textarea placeholder="ملاحظاتك..."></textarea>
+  </div>
+
+  <div class="section">
+    <h2>📅 Week 4 – Design & Architecture</h2>
+    <label><input type="checkbox" onchange="updateProgress()"> HA vs Fault Tolerance</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Decoupling</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Disaster Recovery</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Billing & Trusted Advisor</label>
+    <div class="links">
+      <a href="https://aws.amazon.com/architecture/well-architected/">🔗 Well-Architected Framework</a>
+      <a href="https://aws.amazon.com/architecture/">🔗 Architecture Center</a>
+    </div>
+    <textarea placeholder="ملاحظاتك..."></textarea>
+  </div>
+
+  <div class="section">
+    <h2>📅 Week 5 – Final Review</h2>
+    <label><input type="checkbox" onchange="updateProgress()"> Review Notes</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Practice Exams</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Focus Weak Areas</label>
+    <label><input type="checkbox" onchange="updateProgress()"> Schedule Exam</label>
+    <div class="links">
+      <a href="https://tutorialsdojo.com/aws-solutions-architect-associate-saa-c03/">🔗 Tutorials Dojo Guide</a>
+      <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate/">🔗 Udemy Course</a>
+      <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/">🔗 Official Exam Page</a>
+    </div>
+    <textarea placeholder="ملاحظاتك..."></textarea>
+  </div>
+
+  <div class="section">
+    <h2>📊 Progress</h2>
+    <progress id="progressBar" value="0" max="100"></progress>
+    <p id="progressText">0% Complete</p>
+  </div>
+
+  <script>
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const total = checkboxes.length;
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const percent = Math.round((checked / total) * 100);
+      document.getElementById("progressBar").value = percent;
+      document.getElementById("progressText").innerText = `${percent}% Complete`;
+    }
+  </script>
+</body>
+</html>
