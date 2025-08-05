@@ -57,7 +57,7 @@ Share it or bookmark it!
 
 my website hosted on AWS for your refrace =) :
 
-[Aseel AWS study tracker](https://aws-study-tracker-aseelalawadh.s3.us-east-1.amazonaws.com/index.html)
+[Aseel's AWS study tracker](https://aws-study-tracker-aseelalawadh.s3.us-east-1.amazonaws.com/index.html)
 
 ---
 
