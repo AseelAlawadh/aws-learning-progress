@@ -55,6 +55,11 @@ http://your-bucket-name.s3-website-region.amazonaws.com
 
 Share it or bookmark it!
 
+my website hosted on AWS for your refrace =) :
+```
+https://aws-study-tracker-aseelalawadh.s3.us-east-1.amazonaws.com/index.html
+```
+
 ---
 
 ## 💡 Optional Enhancements
