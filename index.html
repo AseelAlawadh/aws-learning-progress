@@ -37,7 +37,7 @@
 
         h1 {
             text-align: center;
-            color: var(--highlight-color);
+            color: var(--link-color);
             margin-bottom: 40px;
             font-size: 2.5rem;
         }
@@ -146,6 +146,7 @@
 
             h1 {
                 font-size: 1.8rem;
+
             }
 
             .section {
@@ -157,11 +158,95 @@
                 font-size: 13px;
             }
         }
-    </style>
+
+        button {
+            background-color: var(--card-color);
+            color: var(--text-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.03);
+        }
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    textarea {
+        font-size: 13px;
+        padding: 10px;
+        height: 100px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section label {
+        font-size: 14px;
+    }
+}
+
+</style>
 </head>
 <body>
 <button id="themeToggle">🌓 Toggle Theme</button>
 <div class="container">
+
+<nav style="text-align:center; background: var(--card-color); padding: 14px 0; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+  <a href="#week1" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 1</a>
+  <a href="#week2" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 2</a>
+  <a href="#week3" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 3</a>
+  <a href="#week4" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 4</a>
+  <a href="#week5" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 5</a>
+  <a href="#week6" style="margin: 0 12px; color: var(--link-color); font-weight: 600; text-decoration: none;">Week 6</a>
+</nav>
+
+<div style="text-align:center; margin-bottom: 30px;">
+  <button onclick="resetProgress()">♻️ Reset Progress</button>
+  <button onclick="downloadNotes()">💾 Download Notes</button>
+</div>
+
     <h1>🚀 AWS Solutions Architect – Progress Tracker</h1>
 
     <div class="section">
@@ -170,7 +255,7 @@
         <p id="progressText">0% Complete</p>
     </div>
     <div class="section">
-        <h2>📅 Week 1 – Core Services</h2>
+        <h2><a id="week1"></a>📅 Week 1 – Core Services</h2>
         <label><input type="checkbox" onchange="updateProgress()"> EC2</label>
         <label><input type="checkbox" onchange="updateProgress()"> S3</label>
         <label><input type="checkbox" onchange="updateProgress()"> IAM</label>
@@ -182,10 +267,11 @@
             <a href="https://docs.aws.amazon.com/cli/">🔗 AWS CLI Docs</a>
         </div>
         <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
 
     <div class="section">
-        <h2>📅 Week 2 – Networking & VPC</h2>
+        <h2><a id="week2"></a>📅 Week 2 – Networking & VPC</h2>
         <label><input type="checkbox" onchange="updateProgress()"> VPC Basics</label>
         <label><input type="checkbox" onchange="updateProgress()"> Subnets & Routing</label>
         <label><input type="checkbox" onchange="updateProgress()"> NAT & IGW</label>
@@ -197,9 +283,10 @@
             <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">🔗 Security Groups</a>
         </div>
         <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
     <div class="section">
-        <h2>📅 Week 3 – Databases & Scaling</h2>
+        <h2><a id="week3"></a>📅 Week 3 – Databases & Scaling</h2>
         <label><input type="checkbox" onchange="updateProgress()"> RDS & Aurora</label>
         <label><input type="checkbox" onchange="updateProgress()"> DynamoDB</label>
         <label><input type="checkbox" onchange="updateProgress()"> ELB & ASG</label>
@@ -214,9 +301,10 @@
 <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">🔗 DynamoDB Backup</a>
         </div>
         <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
     <div class="section">
-        <h2>📅 Week 4 – Design & Architecture</h2>
+        <h2><a id="week4"></a>📅 Week 4 – Design & Architecture</h2>
         <label><input type="checkbox" onchange="updateProgress()"> HA vs Fault Tolerance</label>
 
         <label><input type="checkbox" onchange="updateProgress()"> Decoupling</label>
@@ -243,9 +331,10 @@
       </div>
 
 <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
     <div class="section">
-        <h2>📅 Week 5 – Monitoring & Auto Scaling</h2>
+        <h2><a id="week5"></a>📅 Week 5 – Monitoring & Auto Scaling</h2>
         <label><input type="checkbox"> CloudWatch</label>
         <label><input type="checkbox"> Auto Scaling Groups</label>
         <label><input type="checkbox"> Elastic Load Balancing</label>
@@ -257,9 +346,10 @@
             <a href="#" target="_blank">Official Page</a>
         </div>
         <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
     <div class="section">
-        <h2>📅 Week 6 – Final Review</h2>
+        <h2><a id="week6"></a>📅 Week 6 –Final Review</h2>
         <label><input type="checkbox"> Well-Architected Framework</label>
         <label><input type="checkbox"> Practice Exam</label>
         <label><input type="checkbox" onchange="updateProgress()"> Review Notes</label>
@@ -272,6 +362,7 @@
                 Page</a>
         </div>
         <textarea placeholder="Your notes..."></textarea>
+<div style="text-align:right; margin-top: 10px;"><button class="mark-week">✅ Mark Week as Done</button></div>
     </div>
 </div>
 <script>
@@ -290,7 +381,7 @@
             const inputs = section.querySelectorAll('input[type="checkbox"]');
             const allChecked = inputs.length > 0 && Array.from(inputs).every(cb => cb.checked);
             section.classList.toggle('complete', allChecked);
-            if (allChecked) showNotification(`🎉 Week ${i + 1} Complete!`);
+            if (allChecked) showNotification(`🎉 ${section.querySelector("h2").textContent.split("–")[0].trim()} Complete!`);
         });
 
         checkboxes.forEach((cb, index) => {
@@ -345,6 +436,88 @@
         document.documentElement.setAttribute("data-theme", savedTheme);
         updateProgress();
     });
+
+    function resetProgress() {
+        if (!confirm("Are you sure you want to reset all progress and notes?")) return;
+        checkboxes.forEach((cb, index) => {
+            cb.checked = false;
+            localStorage.removeItem(`checkbox-${index}`);
+        });
+        textareas.forEach((ta, index) => {
+            ta.value = "";
+            localStorage.removeItem(`textarea-${index}`);
+        });
+        updateProgress();
+    }
+
+    function downloadNotes() {
+        let content = "";
+        textareas.forEach((ta, index) => {
+            content += `Week ${Math.floor(index/1)+1} Notes:\n` + ta.value + "\n\n";
+        });
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "aws-notes.txt";
+        link.click();
+    }
+
+    document.querySelectorAll(".mark-week").forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+            const section = btn.closest(".section");
+            const boxes = section.querySelectorAll('input[type="checkbox"]');
+            boxes.forEach(cb => cb.checked = true);
+            updateProgress();
+        });
+    });
+
 </script>
+
+<button id="scrollTopBtn" title="Back to Top">⬆️</button>
+<style>
+
+  #scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 100;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    background: none;
+    color: var(--link-color);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  #scrollTopBtn:hover {
+    color: var(--highlight-color);
+  }
+
+</style>
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn") || (() => {
+    const btn = document.createElement("button");
+    btn.id = "scrollTopBtn";
+    btn.title = "Back to Top";
+    btn.innerText = "⬆️";
+    document.body.appendChild(btn);
+    return btn;
+  })();
+
+  window.onscroll = () => {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  };
+
+  scrollBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+</script>
+
 </body>
 </html>
