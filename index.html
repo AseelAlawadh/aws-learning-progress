@@ -1,110 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWS Architect Study Tracker</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f4f8; }
-    h1 { color: #1a73e8; }
-    .section { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    label { display: block; margin-bottom: 10px; }
-    textarea { width: 100%; height: 80px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 10px; }
-    progress { width: 100%; height: 20px; }
-    .links { margin-top: 10px; }
-    .links a { display: block; color: #1a73e8; text-decoration: none; margin-bottom: 5px; }
-  </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>🚀 AWS Study Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F1E5D1;
+            --card-color: #DBB5B5;
+            --accent-color: #C39898;
+            --highlight-color: #987070;
+            --link-color: #7C444F;
+            --text-color: #333;
+            --note-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1e1e1e;
+            --card-color: #2a2a2a;
+            --accent-color: #444;
+            --highlight-color: #ffb3b3;
+            --link-color: #ff7a90;
+            --text-color: #eee;
+            --note-bg: #333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--highlight-color);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-color);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .section.complete::after {
+            content: "✅ Week Done!";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: green;
+        }
+
+        .section:hover {
+            transform: scale(1.01);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--link-color);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-color);
+            background: var(--note-bg);
+            color: var(--text-color);
+            padding: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .links {
+            margin-top: 12px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+            color: #5a2d36;
+        }
+
+        progress {
+            width: 100%;
+            height: 22px;
+        }
+
+        #progressText {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-color);
+            color: var(--text-color);
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            textarea {
+                height: 100px;
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>📘 AWS Solutions Architect – Study Progress</h1>
+<button id="themeToggle">🌓 Toggle Theme</button>
+<div class="container">
+    <h1>🚀 AWS Solutions Architect – Progress Tracker</h1>
 
-  <div class="section">
-    <h2>📅 Week 1 – Core Services</h2>
-    <label><input type="checkbox" onchange="updateProgress()"> EC2</label>
-    <label><input type="checkbox" onchange="updateProgress()"> S3</label>
-    <label><input type="checkbox" onchange="updateProgress()"> IAM</label>
-    <label><input type="checkbox" onchange="updateProgress()"> CLI & SDK</label>
-    <div class="links">
-      <a href="https://docs.aws.amazon.com/ec2/">🔗 EC2 Docs</a>
-      <a href="https://docs.aws.amazon.com/s3/">🔗 S3 Docs</a>
-      <a href="https://docs.aws.amazon.com/IAM/">🔗 IAM Docs</a>
-      <a href="https://docs.aws.amazon.com/cli/">🔗 AWS CLI Docs</a>
+    <div class="section">
+        <h2>📊 Overall Progress</h2>
+        <progress id="progressBar" value="0" max="100"></progress>
+        <p id="progressText">0% Complete</p>
     </div>
-    <textarea placeholder="ملاحظاتك..."></textarea>
-  </div>
-
-  <div class="section">
-    <h2>📅 Week 2 – Networking</h2>
-    <label><input type="checkbox" onchange="updateProgress()"> VPC Basics</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Subnets & Routing</label>
-    <label><input type="checkbox" onchange="updateProgress()"> NAT & IGW</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Security Groups & NACL</label>
-    <div class="links">
-      <a href="https://docs.aws.amazon.com/vpc/">🔗 VPC Docs</a>
-      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">🔗 Subnets</a>
-      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT.html">🔗 NAT Gateway</a>
-      <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">🔗 Security Groups</a>
+    <div class="section">
+        <h2>📅 Week 1 – Core Services</h2>
+        <label><input type="checkbox" onchange="updateProgress()"> EC2</label>
+        <label><input type="checkbox" onchange="updateProgress()"> S3</label>
+        <label><input type="checkbox" onchange="updateProgress()"> IAM</label>
+        <label><input type="checkbox" onchange="updateProgress()"> CLI & SDK</label>
+        <div class="links">
+            <a href="https://docs.aws.amazon.com/ec2/">🔗 EC2 Docs</a>
+            <a href="https://docs.aws.amazon.com/s3/">🔗 S3 Docs</a>
+            <a href="https://docs.aws.amazon.com/IAM/">🔗 IAM Docs</a>
+            <a href="https://docs.aws.amazon.com/cli/">🔗 AWS CLI Docs</a>
+        </div>
+        <textarea placeholder="Your notes..."></textarea>
     </div>
-    <textarea placeholder="ملاحظاتك..."></textarea>
-  </div>
 
-  <div class="section">
-    <h2>📅 Week 3 – Databases & Scaling</h2>
-    <label><input type="checkbox" onchange="updateProgress()"> RDS & Aurora</label>
-    <label><input type="checkbox" onchange="updateProgress()"> DynamoDB</label>
-    <label><input type="checkbox" onchange="updateProgress()"> ELB & ASG</label>
-    <label><input type="checkbox" onchange="updateProgress()"> EBS & EFS</label>
-    <div class="links">
-      <a href="https://docs.aws.amazon.com/AmazonRDS/">🔗 RDS Docs</a>
-      <a href="https://docs.aws.amazon.com/amazondynamodb/">🔗 DynamoDB Docs</a>
-      <a href="https://docs.aws.amazon.com/elasticloadbalancing/">🔗 ELB Docs</a>
-      <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html">🔗 EBS Docs</a>
+    <div class="section">
+        <h2>📅 Week 2 – Networking & VPC</h2>
+        <label><input type="checkbox" onchange="updateProgress()"> VPC Basics</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Subnets & Routing</label>
+        <label><input type="checkbox" onchange="updateProgress()"> NAT & IGW</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Security Groups & NACL</label>
+        <div class="links">
+            <a href="https://docs.aws.amazon.com/vpc/">🔗 VPC Docs</a>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">🔗 Subnets</a>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT.html">🔗 NAT Gateway</a>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">🔗 Security Groups</a>
+        </div>
+        <textarea placeholder="Your notes..."></textarea>
     </div>
-    <textarea placeholder="ملاحظاتك..."></textarea>
-  </div>
-
-  <div class="section">
-    <h2>📅 Week 4 – Design & Architecture</h2>
-    <label><input type="checkbox" onchange="updateProgress()"> HA vs Fault Tolerance</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Decoupling</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Disaster Recovery</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Billing & Trusted Advisor</label>
-    <div class="links">
-      <a href="https://aws.amazon.com/architecture/well-architected/">🔗 Well-Architected Framework</a>
-      <a href="https://aws.amazon.com/architecture/">🔗 Architecture Center</a>
+    <div class="section">
+        <h2>📅 Week 3 – Databases & Scaling</h2>
+        <label><input type="checkbox" onchange="updateProgress()"> RDS & Aurora</label>
+        <label><input type="checkbox" onchange="updateProgress()"> DynamoDB</label>
+        <label><input type="checkbox" onchange="updateProgress()"> ELB & ASG</label>
+        <label><input type="checkbox" onchange="updateProgress()"> EBS & EFS</label>
+        <label><input type="checkbox"> Backup & Restore</label>
+        <div class="links">
+            <a href="https://docs.aws.amazon.com/AmazonRDS/">🔗 RDS Docs</a>
+            <a href="https://docs.aws.amazon.com/amazondynamodb/">🔗 DynamoDB Docs</a>
+            <a href="https://docs.aws.amazon.com/elasticloadbalancing/">🔗 ELB Docs</a>
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html">🔗 EBS Docs</a>
+<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html">🔗 RDS Backup</a>
+<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">🔗 DynamoDB Backup</a>
+        </div>
+        <textarea placeholder="Your notes..."></textarea>
     </div>
-    <textarea placeholder="ملاحظاتك..."></textarea>
-  </div>
+    <div class="section">
+        <h2>📅 Week 4 – Design & Architecture</h2>
+        <label><input type="checkbox" onchange="updateProgress()"> HA vs Fault Tolerance</label>
 
-  <div class="section">
-    <h2>📅 Week 5 – Final Review</h2>
-    <label><input type="checkbox" onchange="updateProgress()"> Review Notes</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Practice Exams</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Focus Weak Areas</label>
-    <label><input type="checkbox" onchange="updateProgress()"> Schedule Exam</label>
-    <div class="links">
-      <a href="https://tutorialsdojo.com/aws-solutions-architect-associate-saa-c03/">🔗 Tutorials Dojo Guide</a>
-      <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate/">🔗 Udemy Course</a>
-      <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/">🔗 Official Exam Page</a>
+        <label><input type="checkbox" onchange="updateProgress()"> Decoupling</label>
+
+        <label><input type="checkbox" onchange="updateProgress()"> Disaster Recovery</label>
+
+<label><input type="checkbox" onchange="updateProgress()"> Event-driven Architecture</label>
+
+        <label><input type="checkbox" onchange="updateProgress()"> Billing & Trusted Advisor</label>
+
+
+        <div class="links">
+
+
+        </div>
+
+      <div class="links">
+        <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-overview/ha-ft.html" target="_blank">🔗 HA vs FT - AWS Whitepaper</a>
+        <a href="https://docs.aws.amazon.com/wellarchitected/latest/architecture-decisions/decouple-your-components.html" target="_blank">🔗 Decoupling - Well-Architected</a>
+        <a href="https://aws.amazon.com/disaster-recovery/" target="_blank">🔗 AWS Disaster Recovery</a>
+        <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html" target="_blank">🔗 AWS Billing</a>
+        <a href="https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html" target="_blank">🔗 Trusted Advisor</a>
+        <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html" target="_blank">🔗 EventBridge (Event-driven)</a>
+      </div>
+
+<textarea placeholder="Your notes..."></textarea>
     </div>
-    <textarea placeholder="ملاحظاتك..."></textarea>
-  </div>
+    <div class="section">
+        <h2>📅 Week 5 – Monitoring & Auto Scaling</h2>
+        <label><input type="checkbox"> CloudWatch</label>
+        <label><input type="checkbox"> Auto Scaling Groups</label>
+        <label><input type="checkbox"> Elastic Load Balancing</label>
+        <div class="links">
+            <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html">🔗 CloudWatch Docs</a>
+<a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html">🔗 Auto Scaling Docs</a>
+<a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html">🔗 ELB Overview</a>
+            <a href="#" target="_blank">Udemy Course</a>
+            <a href="#" target="_blank">Official Page</a>
+        </div>
+        <textarea placeholder="Your notes..."></textarea>
+    </div>
+    <div class="section">
+        <h2>📅 Week 6 – Final Review</h2>
+        <label><input type="checkbox"> Well-Architected Framework</label>
+        <label><input type="checkbox"> Practice Exam</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Review Notes</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Schedule Exam</label>
 
-  <div class="section">
-    <h2>📊 Progress</h2>
-    <progress id="progressBar" value="0" max="100"></progress>
-    <p id="progressText">0% Complete</p>
-  </div>
+        <div class="links">
+            <a href="https://tutorialsdojo.com/aws-solutions-architect-associate-saa-c03/">🔗 Tutorials Dojo Guide</a>
+            <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate/">🔗 Udemy Course</a>
+            <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/">🔗 Official Exam
+                Page</a>
+        </div>
+        <textarea placeholder="Your notes..."></textarea>
+    </div>
+</div>
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const textareas = document.querySelectorAll('textarea');
+    const sections = document.querySelectorAll('.section');
+    const themeToggle = document.getElementById("themeToggle");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
 
-  <script>
     function updateProgress() {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const total = checkboxes.length;
-      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
-      const percent = Math.round((checked / total) * 100);
-      document.getElementById("progressBar").value = percent;
-      document.getElementById("progressText").innerText = `${percent}% Complete`;
+        let total = checkboxes.length;
+        let checked = 0;
+
+        sections.forEach((section, i) => {
+            const inputs = section.querySelectorAll('input[type="checkbox"]');
+            const allChecked = inputs.length > 0 && Array.from(inputs).every(cb => cb.checked);
+            section.classList.toggle('complete', allChecked);
+            if (allChecked) showNotification(`🎉 Week ${i + 1} Complete!`);
+        });
+
+        checkboxes.forEach((cb, index) => {
+            if (cb.checked) checked++;
+            localStorage.setItem(`checkbox-${index}`, cb.checked);
+        });
+
+        const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+        if (progressBar && progressText) {
+            progressBar.value = percent;
+            progressText.innerText = `${percent}% Complete`;
+        }
     }
-  </script>
+
+    checkboxes.forEach((cb, index) => {
+        const saved = localStorage.getItem(`checkbox-${index}`);
+        cb.checked = saved === 'true';
+        cb.addEventListener('change', updateProgress);
+    });
+
+    textareas.forEach((ta, index) => {
+        const savedText = localStorage.getItem(`textarea-${index}`);
+        if (savedText) ta.value = savedText;
+        ta.addEventListener('input', () => {
+            localStorage.setItem(`textarea-${index}`, ta.value);
+        });
+    });
+
+    function showNotification(message) {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.right = '30px';
+        toast.style.padding = '12px 18px';
+        toast.style.background = '#7C444F';
+        toast.style.color = '#fff';
+        toast.style.borderRadius = '8px';
+        toast.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        document.documentElement.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+        localStorage.setItem("theme", document.documentElement.getAttribute("data-theme"));
+    });
+
+    window.addEventListener('load', () => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        updateProgress();
+    });
+</script>
 </body>
 </html>
